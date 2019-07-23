@@ -17,6 +17,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 /**
@@ -25,6 +26,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     GoogleMap map;
+    FloatingActionButton fab;
+    boolean isClicked = false;
+
 
     public MapFragment() {
         // Required empty public constructor
@@ -36,8 +40,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_map, container, false);
-
-
+        fab = v.findViewById(R.id.button);
 
         return v;
     }
@@ -46,7 +49,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map1);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
     }
 
@@ -54,12 +57,36 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
 
+        fab.setOnClickListener(new View.OnClickListener() {
 
-        LatLng pp = new LatLng(39,32);
+            @Override
+            public void onClick(View view) {
 
-//        MarkerOptions option = new MarkerOptions();
-//        option.position(pp).title("NERE BILMIYOM");
-//        map.addMarker(option);
-        map.moveCamera(CameraUpdateFactory.newLatLng(pp));
+                isClicked = true;
+
+            }
+
+        });
+
+
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng destination) {
+                if (isClicked) {
+                    map.clear();
+                    MarkerOptions options = new MarkerOptions();
+                    options.position(destination);
+                    options.title("Lat=" + destination.latitude + ", Long=" + destination.longitude);
+                    map.addMarker(options);
+                    map.animateCamera(CameraUpdateFactory.newLatLng(destination));
+                    fab.setImageResource(R.drawable.ic_done_black_24dp);
+                }
+
+            }
+        });
+
+
     }
+
+
 }
