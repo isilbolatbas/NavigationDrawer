@@ -1,5 +1,7 @@
 package com.example.vallason;
 
+import android.content.Context;
+import android.graphics.Movie;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,11 +21,22 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    private List <Event> events = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private RecyclerViewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +44,39 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        FloatingActionButton fab = findViewById(R.id.button);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
+
+//        events.add(new Event("hjgjh","kjhjk", "mjhjhjk"));
+//        events.add(new Event("hjgdvjh","kjhvxcjk", "mjvxchjhjk"));
+//        events.add(new Event("hjgjxcvxh","kvxcvjhjk", "mvxcjhjhjk"));
+//        events.add(new Event("hjgxvjh","kjhvxjk", "mjxcvhjhjk"));
+//        eventDatabase = EventDatabase.getDatabase(this);
+//        eventDatabase.daoEvent().insert();
 //
-//
-//
-//
-//            }
-//        });
+//        eventDatabase = EventDatabase.getInstance(getApplicationContext());
+
+        recyclerView = (RecyclerView) findViewById(R.id.list);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+
+        EventDatabase.getDatabase(this).daoEvent().getAll().observe(this, new Observer<List<Event>>() {
+                    @Override
+                    public void onChanged(List<Event> all) {
+                        if(all != null){
+                            events.clear();
+                            events.addAll(all);
+                            mAdapter = new RecyclerViewAdapter(events);
+                            recyclerView.setAdapter(mAdapter);
+                            mAdapter.notifyDataSetChanged();
+                        }
+
+
+                    }
+                });
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -53,15 +87,15 @@ public class MainActivity extends AppCompatActivity
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.mainLayout, mapFragment).commit();
 
-
-
     }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+
         } else {
             super.onBackPressed();
         }
@@ -72,6 +106,7 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+
     }
 
 
@@ -81,14 +116,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        }
-        else if (id == R.id.nav_contactus) {
-
-        }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

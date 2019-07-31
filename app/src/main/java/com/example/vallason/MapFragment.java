@@ -76,6 +76,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         });
 
+
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng destination) {
@@ -89,6 +90,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     fab.setImageResource(R.drawable.ic_done_black_24dp);
                     isDone = true;
                 }
+
+
+
             }
         });
 

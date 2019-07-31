@@ -21,14 +21,12 @@
 
     <string name="spin">edittext</string>
 
-    <array name="spinner">
-        <item>secim yapiniz</item>
+    <array name="Secenek">
+
         <item>concert</item>
         <item>support</item>
         <item>meeting</item>
         <item>other</item>
-
-
 
     </array>
 </resources>
