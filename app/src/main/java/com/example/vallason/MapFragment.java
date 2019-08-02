@@ -4,11 +4,9 @@ package com.example.vallason;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
@@ -62,6 +59,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
 
         map = googleMap;
+        Map.getInstance().setMap(googleMap);
 
         fab.setOnClickListener(new View.OnClickListener() {
 
@@ -72,6 +70,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     final Dialog dialog = CustomDialog.createDialog(context);
                     dialog.show();
                 }
+
             }
 
         });
@@ -81,17 +80,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onMapClick(LatLng destination) {
                 if (isClicked) {
-                    map.clear();
-                    MarkerOptions options = new MarkerOptions();
-                    options.position(destination);
-                    options.title("Lat=" + destination.latitude + ", Long=" + destination.longitude);
-                    map.addMarker(options);
-                    map.animateCamera(CameraUpdateFactory.newLatLng(destination));
-                    fab.setImageResource(R.drawable.ic_done_black_24dp);
+                    Map.getInstance().clearMap();
+                    Map.getInstance().addMarker(destination);
+                    fabTik();
                     isDone = true;
                 }
-
-
 
             }
         });
@@ -99,5 +92,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
+    public void fabTik(){
+        if(isClicked){
+            fab.setImageResource(R.drawable.ic_done_black_24dp);
+        }
+
+    }
+
+    public void fabPlus() {
+        fab.setImageResource(R.drawable.ic_add_black_plus);
+        Map.getInstance().clearMap();
+    }
 
 }

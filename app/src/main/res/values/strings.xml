@@ -15,16 +15,14 @@
     <string name="menu_send">Send</string>
     <string name="title_activity_maps">Map</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
-    <string name="spin">edittext</string>
+    <string name="title"  >TYPE</string>
 
     <array name="Secenek">
 
+        <item>secim yapiniz</item>
         <item>concert</item>
-        <item>support</item>
+        <item>sport</item>
         <item>meeting</item>
         <item>other</item>
 

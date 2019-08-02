@@ -3,14 +3,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp">
+    android:layout_marginTop="0dp">
 
     <TextView
         android:id="@+id/event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="0dp"
         android:textSize="17sp"
+        android:gravity="center"
         android:textStyle="normal"/>
 
 
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/event"
+        android:gravity="center"
         android:layout_marginTop="5dp"
         android:textSize="17sp"
         android:textStyle="normal" />
@@ -26,6 +28,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/black"/>
+        android:background="@android:color/black"
+        android:layout_marginTop="6dp"
+        />
 
 </LinearLayout>

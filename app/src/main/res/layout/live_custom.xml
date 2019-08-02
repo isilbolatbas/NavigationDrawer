@@ -93,10 +93,12 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:entries="@array/Secenek"
+        android:prompt="@string/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toEndOf="@+id/typeText"
-        app:layout_constraintTop_toBottomOf="@+id/detailEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/detailEdit"
+        />
 
 
     <LinearLayout
