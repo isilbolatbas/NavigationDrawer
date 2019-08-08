@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dip"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    >
+
+    <TextView
+        android:id="@+id/lblListItem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textSize="17dip"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:text="DETAIL"
+        app:layout_constraintEnd_toStartOf="@+id/locaiton"
+        app:layout_constraintTop_toBottomOf="@+id/lblListItem" />
+
+    <Button
+        android:id="@+id/locaiton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="44dp"
+        android:text="LOCATION"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblListItem" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
