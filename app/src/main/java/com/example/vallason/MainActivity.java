@@ -1,33 +1,21 @@
 package com.example.vallason;
 
-import android.content.Context;
-import android.graphics.Movie;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.View;
-
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
+import android.util.Log;
 import android.view.MenuItem;
-
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.Menu;
-
+import android.view.View;
+import android.widget.ExpandableListView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,11 +23,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     private List <Event> events = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private RecyclerViewAdapter mAdapter;
+//    private RecyclerView recyclerView;
+//    private RecyclerViewAdapter mAdapter;
+
+    ExpandableListAdapter listAdapter;
+    ExpandableListView expListView;
+    String listDataChild;
+    EventDatabase eventDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -54,29 +50,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //
 //        eventDatabase = EventDatabase.getInstance(getApplicationContext());
 
-        recyclerView = (RecyclerView) findViewById(R.id.list);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
+//        recyclerView = (RecyclerView) findViewById(R.id.list);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+//        recyclerView.setLayoutManager(mLayoutManager);
+
+
+
+        eventDatabase = EventDatabase.getDatabase(getApplicationContext());
+        expListView = (ExpandableListView) findViewById(R.id.lvExp);
+
+
 
         EventDatabase.getDatabase(this).daoEvent().getAll().observe(this, new Observer<List<Event>>() {
                     @Override
                     public void onChanged(List<Event> all) {
                         if(all != null){
+
                             events.clear();
                             events.addAll(all);
-                            mAdapter = new RecyclerViewAdapter(events);
-                            recyclerView.setAdapter(mAdapter);
-                            mAdapter.notifyDataSetChanged();
-                        }
+//                            mAdapter = new RecyclerViewAdapter(events);
+//                            recyclerView.setAdapter(mAdapter);
+//                            mAdapter.notifyDataSetChanged();
 
+                            listAdapter = new ExpandableListAdapter(MainActivity.this, events, listDataChild);
+                            final int[] prevExpandPosition = {-1};
+                            expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+                                @Override
+                                public void onGroupExpand(int groupPosition) {
+                                    if (prevExpandPosition[0] >= 0 && prevExpandPosition[0] != groupPosition) {
+                                        expListView.collapseGroup(prevExpandPosition[0]);
+                                    }
+                                    prevExpandPosition[0] = groupPosition;
+                                }
+                            });
+
+
+
+                            expListView.setAdapter(listAdapter);
+                            listAdapter.notifyDataSetChanged();
+
+
+                        }
 
                     }
                 });
 
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -120,8 +140,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 
 
 

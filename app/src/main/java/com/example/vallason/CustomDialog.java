@@ -62,13 +62,13 @@ public class CustomDialog  {
                 else if(spinner.getSelectedItemPosition()== 0){
                     Toast.makeText(context, "type secmeye ihtiyacın var", Toast.LENGTH_SHORT).show();
 
+                } else {
+                    Event event = new Event(eventEdit.getText().toString(), detailEdit.getText().toString(), spinner.getSelectedItemPosition());
+                    EventDatabase.getDatabase(context).daoEvent().insert(event);
+                    dialog.dismiss();
+                    Map.getInstance().clearMap();
+                    MapFragment.makeFabIconAdd();
                 }
-
-
-                Event event = new Event(eventEdit.getText().toString(), detailEdit.getText().toString(), spinner.getSelectedItemPosition());
-                EventDatabase.getDatabase(context).daoEvent().insert(event);
-                dialog.dismiss();
-                Map.getInstance().clearMap();
 
             }
         });

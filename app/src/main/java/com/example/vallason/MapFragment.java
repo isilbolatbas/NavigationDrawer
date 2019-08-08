@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -26,7 +25,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     GoogleMap map;
-    FloatingActionButton fab;
+    private static FloatingActionButton fab;
     boolean isClicked = false;
     boolean isDone = false;
     Context context;
@@ -82,7 +81,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 if (isClicked) {
                     Map.getInstance().clearMap();
                     Map.getInstance().addMarker(destination);
-                    fabTik();
+                    makeFabIconDone();
                     isDone = true;
                 }
 
@@ -92,14 +91,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
-    public void fabTik(){
+    public void makeFabIconDone(){
         if(isClicked){
             fab.setImageResource(R.drawable.ic_done_black_24dp);
         }
 
     }
 
-    public void fabPlus() {
+    public static void makeFabIconAdd() {
         fab.setImageResource(R.drawable.ic_add_black_plus);
         Map.getInstance().clearMap();
     }

@@ -22,8 +22,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public MyViewHolder(View v) {
             super(v);
-            event = v.findViewById(R.id.event);
-            type = v.findViewById(R.id.type);
+//            event = v.findViewById(R.id.event);
+//            type = v.findViewById(R.id.type);
         }
 
     }
@@ -38,8 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                      int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_view, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view, parent, false);
 
        return new MyViewHolder(v);
     }
@@ -51,11 +50,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Event ev = events.get(position);
         holder.event.setText(ev.getEvent());
         holder.type.setText(Event.EventType.getType(ev.getType()));
-
-
-//
-//        MyViewHolder post = re(position);
-//        holder.bind(post);
 
     }
 
