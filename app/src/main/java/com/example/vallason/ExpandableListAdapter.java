@@ -18,6 +18,8 @@ import androidx.core.view.GravityCompat;
 
 import java.util.List;
 
+import static com.example.vallason.MainActivity.closeDrawer;
+
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
@@ -65,7 +67,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View view) {
 
-
+                closeDrawer();
 
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.detail_custom_dialog);

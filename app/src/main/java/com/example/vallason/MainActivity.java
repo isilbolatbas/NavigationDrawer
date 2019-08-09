@@ -4,8 +4,6 @@ import android.os.Bundle;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
-import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -13,9 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.Menu;
-import android.view.View;
+
 import android.widget.ExpandableListView;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ExpandableListView expListView;
     String listDataChild;
     EventDatabase eventDatabase;
+    public static DrawerLayout drawer;
 
 
     @Override
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -140,6 +139,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public static void closeDrawer() {
+            drawer.closeDrawer(GravityCompat.START);
+
     }
 
 
