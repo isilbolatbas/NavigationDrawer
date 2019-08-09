@@ -40,9 +40,6 @@ public class CustomDialog  {
 
 
 
-
-
-
         // tamam butonunun tıklanma olayları
         btnKaydet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +69,7 @@ public class CustomDialog  {
 
             }
         });
-        // iptal butonunun tıklanma olayları
+
         btnIptal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

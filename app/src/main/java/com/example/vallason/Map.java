@@ -10,9 +10,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Map {
 
-
-
-
     private GoogleMap map;
 
     private static Map maps = null;

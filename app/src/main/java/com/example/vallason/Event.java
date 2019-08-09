@@ -91,5 +91,14 @@ public class Event implements Serializable {
             }
             return "";
         }
+//        public static int getType(String type) {
+////            for(EventType t : EventType.values()) {
+////                if (t.type.equals(type))
+////                    return t.ordinal();
+////            }
+////            return -1;
+////        }
+
+
     }
 }

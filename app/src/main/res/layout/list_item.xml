@@ -26,8 +26,11 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="36dp"
         android:text="DETAIL"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/locaiton"
-        app:layout_constraintTop_toBottomOf="@+id/lblListItem" />
+        app:layout_constraintTop_toBottomOf="@+id/lblListItem"
+        android:background="#ea0629"
+       />
 
     <Button
         android:id="@+id/locaiton"
@@ -36,7 +39,9 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="44dp"
         android:text="LOCATION"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblListItem" />
+        app:layout_constraintTop_toBottomOf="@+id/lblListItem"
+       android:background="#2fa235"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
