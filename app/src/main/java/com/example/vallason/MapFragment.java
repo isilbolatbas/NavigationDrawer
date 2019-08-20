@@ -16,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
@@ -29,6 +30,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     boolean isClicked = false;
     boolean isDone = false;
     Context context;
+    Marker marker;
 
 
     public MapFragment() {
@@ -66,6 +68,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             public void onClick(View view) {
                 isClicked = true;
                 if (isDone) {
+                    Map.getInstance().clearMap();
                     final Dialog dialog = CustomDialog.createDialog(context);
                     dialog.show();
                 }
@@ -102,5 +105,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         fab.setImageResource(R.drawable.ic_add_black_plus);
         Map.getInstance().clearMap();
     }
+
 
 }

@@ -16,6 +16,11 @@ import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.util.List;
 
 import static com.example.vallason.MainActivity.closeDrawer;
@@ -23,10 +28,12 @@ import static com.example.vallason.MainActivity.closeDrawer;
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
+    static Location marker;
     private List<Event> events;
     boolean isClicked = false;
     boolean isDone = false;
     EventDatabase eventDatabase;
+
 
     public ExpandableListAdapter(Context context, List<Event> events,  String details ) {
         this.context = context;
@@ -61,7 +68,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
         Button detail = (Button) convertView.findViewById(R.id.detail);
-        Button location = (Button) convertView.findViewById(R.id.locaiton);
+        final Button location = (Button) convertView.findViewById(R.id.locaiton);
 
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +155,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                             events.get(groupPosition).setEvent(eventEdit.getText().toString());
                             events.get(groupPosition).setDetails(detailEdit.getText().toString());
                             events.get(groupPosition).setType( spinner.getSelectedItemPosition());
+
+
                             EventDatabase.getDatabase(context).daoEvent().updateDialog(events.get(groupPosition));
                             dialog.dismiss();
                         }
@@ -172,6 +181,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+            closeDrawer();
+            eventDatabase = EventDatabase.getDatabase(context);
+
+            Map.getInstance().addMarker(new LatLng(events.get(groupPosition).getLocation().getLng(), events.get(groupPosition).getLocation().getLat()));
+
+
 
 
 
@@ -227,6 +243,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
+
         return true;
     }
+
 }

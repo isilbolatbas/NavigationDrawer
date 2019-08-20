@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 }
                             });
 
-
-
                             expListView.setAdapter(listAdapter);
                             listAdapter.notifyDataSetChanged();
 

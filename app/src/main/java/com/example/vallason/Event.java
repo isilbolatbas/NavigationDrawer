@@ -9,11 +9,17 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
 @Entity(tableName = "location")
+
 public class Event implements Serializable {
-    public Event(String event, String details, int type) {
+    public Event(String event, String details, int type, double lng, double lat) {
         this.event = event;
         this.details = details;
         this.type = type;
+        this.location = new Location(lng, lat);
+    }
+
+    public  Event(){
+
     }
 
     @PrimaryKey(autoGenerate = true)
