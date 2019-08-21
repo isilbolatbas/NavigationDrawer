@@ -20,6 +20,9 @@ public interface DaoEvent {
     @Query("SELECT * FROM location")
    LiveData< List <Event>> getAll();
 
+    @Query("SELECT * FROM register WHERE username=:username and password= :password")
+    LoginEvent control(String username,String password);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Event event);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -27,6 +30,9 @@ public interface DaoEvent {
 
     @Update
     void updateDialog(Event event);
+
+    @Insert()
+    void insertRegister(LoginEvent loginEvents);
 
 
 
