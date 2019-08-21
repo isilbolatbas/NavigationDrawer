@@ -51,21 +51,17 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                LoginEvent loginEvent = eventDatabase.daoEvent().control(username.getText().toString(),password.getText().toString());
+                LoginEvent loginEvent = eventDatabase.daoEvent().control(username.getText().toString(), password.getText().toString());
 
-                if(loginEvent != null){
+                if (loginEvent != null) {
 
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
 
+                } else {
+
+                    Toast.makeText(getActivity(), "invalid username or password", Toast.LENGTH_LONG).show();
                 }
-                else {
-
-                    Toast.makeText(getActivity(),"invalid username or password",Toast.LENGTH_LONG).show();
-
-                }
-
-
 
             }
         });
@@ -82,7 +78,6 @@ public class LoginFragment extends Fragment {
 
             }
         });
-
 
         return v;
 
