@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 public class Location {
 
-    @PrimaryKey(autoGenerate = true)
+
     @ColumnInfo(name= "lng")
     private double lng;
     @ColumnInfo(name= "lat")

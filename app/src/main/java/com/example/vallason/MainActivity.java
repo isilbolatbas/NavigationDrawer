@@ -1,5 +1,6 @@
 package com.example.vallason;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -104,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MapFragment mapFragment = new MapFragment();
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.mainLayout, mapFragment).commit();
+
+
 
     }
 

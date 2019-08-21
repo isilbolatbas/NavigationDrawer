@@ -16,7 +16,8 @@
     <string name="title_activity_maps">Map</string>
 
 
-    <string name="title"  >TYPE</string>
+    <string name="title">TYPE</string>
+    <string name="my_text">Register <u>in here</u></string>
 
     <array name="Secenek">
 
@@ -27,6 +28,9 @@
         <item>other</item>
 
     </array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
 
 
