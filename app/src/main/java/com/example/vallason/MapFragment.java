@@ -3,10 +3,14 @@ package com.example.vallason;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +48,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_map, container, false);
         fab = v.findViewById(R.id.button);
+
 
         return v;
     }
@@ -90,6 +95,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
+
 
 
     }

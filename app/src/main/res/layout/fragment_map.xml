@@ -15,8 +15,8 @@ tools:context=".MapFragment" >
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        map:layout_constraintEnd_toEndOf="parent"
         tools:context=".MainActivity"
-        tools:layout_editor_absoluteX="-16dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

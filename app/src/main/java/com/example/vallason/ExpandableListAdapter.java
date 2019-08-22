@@ -189,10 +189,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 
-
-
-
-
             }
         });
 
