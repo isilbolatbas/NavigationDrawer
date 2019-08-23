@@ -15,6 +15,8 @@ import androidx.lifecycle.Observer;
 
 import android.view.Menu;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +108,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.mainLayout, mapFragment).commit();
 
+
+        Button exitButton = (Button) findViewById(R.id.exitButton);
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(MainActivity.this, LoginRegisterActivity.class);
+                startActivity(i);
+
+
+            }
+        });
 
 
     }
