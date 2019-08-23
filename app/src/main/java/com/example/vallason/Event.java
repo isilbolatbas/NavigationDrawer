@@ -18,6 +18,12 @@ public class Event implements Serializable {
         this.location = new Location(lng, lat);
     }
 
+    public Event(int id, double lng, double lat) {
+        this.id = id;
+        this.location = new Location(lng, lat);
+
+    }
+
     public  Event(){
 
     }

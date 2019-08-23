@@ -35,5 +35,7 @@ public interface DaoEvent {
     void insertRegister(LoginEvent loginEvents);
 
 
+ @Query("UPDATE location SET locationlng = :lng , locationlat = :lat  WHERE id LIKE :id")
+ int updateLocation( int id , double lng ,double lat);
 
 }

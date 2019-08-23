@@ -2,6 +2,10 @@ package com.example.vallason;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.util.Log;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -48,6 +52,8 @@ public class Map {
         this.marker = map.addMarker(options);
         options.title("Lat=" + destination.latitude + ", Long=" + destination.longitude);
         map.animateCamera(CameraUpdateFactory.newLatLng(destination));
+        this.marker.setDraggable(true);
+
 
     }
 
